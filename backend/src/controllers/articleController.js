@@ -6,21 +6,27 @@ const Author  = require('../models/author.model.js');
 const createArticle = async (req, res) => {
     try {
         console.log(req.body)
-        console.log(req.name)
-        console.log(req.userId)
-        const { title, description, content, image , video, tags, action} = req.body;
+        console.log(req.files)
+        // console.log(req.name)
+        // console.log(req.userId)
+        const { title, description, content, tags, action} = req.body;
+        const {image, video} = req.files;
         if (!title || !description || !content || !tags || !action ) {
             return res.status(400).json({
                 message: "All fields are mandatory",
                 success: false
             })
         }
-        const obj = { title, description, content, tags, ...(image && { image }), ...(video && {media: video }), authorId:req.userId, authorName:req.name, status: action };
-        const articleCreated = await new Article(obj).save();
+        //const images = req.files.image ? req.files.image.map(file => file.path) : [];
+        const images = req.files.image? req.files.image.map(file=> file.path) : [];
+        const media  =  req.files.video? req.files.video.map(file=> file.path) : [];
 
+        const obj = { title, description, content, tags, ...(images && { image: images }), ...(video && {media: media }), authorId:req.userId, authorName:req.name, status: action };
+        const articleCreated = await new Article(obj).save();
+           
        await Author.findByIdAndUpdate(req.userId, { $push: { articles: articleCreated._id } })
 
-        //console.log(articleCreated)
+        console.log(articleCreated)
         return res.status(201).json({
             message: "Article created successfully...",
             article: articleCreated,

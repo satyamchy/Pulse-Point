@@ -29,9 +29,9 @@ const Login = () => {
                     }
                 );
                 //console.log(document.cookie)
-                console.log(response)
                 const authorData = response.data;
-                loginAuthor(authorData)
+               // loginAuthor(authorData)
+                console.log(response.data)
 
                 if (response.data.success) {
                     toast.success(response.data.message)
@@ -41,8 +41,8 @@ const Login = () => {
                     toast.error(response.data.message)
                 }
             } catch (error:any) {
-                toast.error(error.response?.data?.message)
-                //toast.error("Invalid credentials..")
+                //toast.error(error.response?.data?.message)
+                toast.error("Invalid credentials..")
                 console.log(error.response)
             }
         }

@@ -57,7 +57,7 @@ const Login = async (req, res) => {
 
         // const isMatch = await bcryptjs.compare(password, author[0].password)
 
-        // console.log(author)
+        console.log("author")
         // console.log(author[0].password, " " , password)
         if (author[0].password != password) {
             return res.status(400).json({

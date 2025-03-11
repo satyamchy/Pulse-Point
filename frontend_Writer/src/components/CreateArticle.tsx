@@ -22,11 +22,11 @@ const CreateArticle = () => {
             formData.append("title", title);
             formData.append("description", description);
             formData.append("content", content);
-            // if (image && image.length > 0) {
-            //     Array.from(image).forEach((pic) => formData.append("image", pic));
-            // }
-            // if (video && video.length > 0) 
-            //     Array.from(video).forEach((file) => formData.append("video", file));
+            if (image && image.length > 0) {
+                Array.from(image).forEach((pic) => formData.append("image", pic));
+            }
+            if (video && video.length > 0) 
+                Array.from(video).forEach((file) => formData.append("video", file));
             formData.append("tags", JSON.stringify(tags))
             formData.append("action", action)
             for (let pair of formData.entries()) {

@@ -7,9 +7,9 @@ const databaseConnection = require('./src/config/db.js')
 const userRoute = require('./src/routes/userRoute.js')  
 const authorRoute = require('./src/routes/authorRoute.js')
 const articleRoute = require('./src/routes/articleRoute.js') 
- const apiNewsRoute = require('./src/routes/apiNewsRoutes.js') 
+//const apiNewsRoute = require('./src/routes/apiNewsRoutes.js') 
   
-const session = require('express-session')             
+//const session = require('express-session')             
 // app.use(session({
 //     secret: 'AbortController',  
 //     resave: false,      
@@ -25,6 +25,7 @@ const corsOptions = {
 app.use(cors(corsOptions))
 app.use(cookieParser())
 //middlewares
+app.use(express.static('./public/media'))
 app.use(express.urlencoded({ extended: true }))   
 app.use(express.json())
   
