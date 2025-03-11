@@ -54,7 +54,7 @@ const CreateArticle = () => {
         }
     }
     return (
-        <div className="w-screen h-screen flex items-center justify-center mt-20  ">
+        <div className=" flex items-center justify-center my-10 ">
             <div className="w-[60%] p-10 bg-gray-100">
                 <h1 className="text-3xl font-bold">Write an Article</h1>
 

@@ -7,7 +7,8 @@ type Article = {
     title: string;
     description: string;
     _id: string,
-    createdAt: string
+    createdAt: string,
+    status: string
 }
 const MyArticles = () => {
     const { authorId } = useAuthor()
@@ -25,7 +26,7 @@ const MyArticles = () => {
                         withCredentials: true 
                     }
                 );
-                console.log(response.data)
+                console.log(response.data.articles)
                 setArticle(response.data.articles || []);
             } catch (error) {
                 console.error("Error fetching articles:", error);
@@ -35,19 +36,24 @@ const MyArticles = () => {
     }, []);
 
     return (
-        <div className="w-screen h-screen">
-            <div className="w-[80%] bg-gray-200 gap-5 m-5">
+        <div className="flex justify-center">
+            <div className="w-[80%]  ">
+            <div className="text-3xl font-bold my-6">My Articles</div>
+
                 {article.length > 0 ? (
                     article.map((item, index) => (
-                        <div key={index} className="border-2 m-5 p-4">
-                            <NavLink to={`/myArticle/${item._id}`}>{item.title}</NavLink>
-                            <h1>{item.description}</h1>
-                            <div>{item.createdAt}</div>
+                        <div key={item._id} className=" bg-gray-200 rounded-2xl mx-auto my-8 p-6 shadow-lg shadow-gray-700 transition-transform hover:scale-103">
+                            <NavLink className="font-bold text-2xl text-blue-600 hover:underline" to={`/myArticle/${item._id}`} >{item.title}</NavLink>
+                            <p className="text-lg text-gray-700 mt-2">{item.description}</p>
+                            <div className="text-sm text-gray-500 mt-1">{  new Date(item.createdAt).toLocaleDateString()}</div>
+                            <div className={`${item.status==='draft'? "bg-red-500" : "bg-green-400"} text-white text-center rounded-lg w-24  py-1 mt-3 `}>{item.status}</div>
+                          
+                           
 
                         </div>
                     ))
                 ) : (
-                    <p className="border-2 text-xl text-red-400">No Articles found..</p>
+                    <p className="text-xl text-red-500 text-center mt-10">No Articles found..</p>
                 )
                 }
 

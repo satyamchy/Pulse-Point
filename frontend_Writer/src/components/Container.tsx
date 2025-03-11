@@ -1,37 +1,57 @@
-import { Routes, Route, BrowserRouter, createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { Routes, Route, BrowserRouter, createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
 import Login from '../components/Login'
 import CreateArticle from '../components/CreateArticle';
 import MyArticles from '../components/MyArticles';
 import Home from './HomePage/Home';
-import Article, {ArticleLoader} from './Article';
-import { useAuthor} from '../context/AuthorContext'
+import Article, { ArticleLoader } from './Article';
+import { useAuthor } from '../context/AuthorContext'
+import Header from '../Header/Header';
 
+
+const Layout = () => {
+    return (
+        <>
+            <Header />
+            <Outlet />
+        </>
+    )
+}
 const router = createBrowserRouter([
     {
-        path:"/",
-        element:<Login/>
+        path: "/",
+        element: <Login />
     },
     {
-        path:"/login",
-        element: <Login/>
+        path: "/login",
+        element: <Login />
+
     },
     {
-        path:"/home",
-        element:<Home/>,
+        path: "/",
+        element: <Layout />,
+        children: [
+            {
+                path: "/home",
+                element: <Home />
+            },
+            {
+                path: "/myArticles",
+                element: <MyArticles />,
+            },
+            {
+                path: "/createArticle",
+                element: <CreateArticle />
+            },
+            {
+                path: "/myArticle/:id",
+                element: <Article />,
+                loader: ArticleLoader
+            }
+        ]
     },
-    // {
-    //     path:"/myArticles",
-    //     element:<MyArticles/>
-    // },
-    {
-        path:"/createArticle",
-        element:<CreateArticle/>
-    },
-    {
-        path:"/myArticle/:id",
-        element: <Article/>,
-        loader: ArticleLoader
-    }
+
+
+
 ])
 const Container = () => {
     const { author } = useAuthor()
@@ -46,7 +66,8 @@ const Container = () => {
             </Routes>
             <hr /> */}
             {/* <CreateArticle/> */}
-            <RouterProvider router={router}/>
+
+            <RouterProvider router={router} />
         </div>
 
     )

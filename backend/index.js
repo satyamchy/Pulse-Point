@@ -24,8 +24,15 @@ const corsOptions = {
 }
 app.use(cors(corsOptions))
 app.use(cookieParser())
+app.use((req, res, next) => {
+    console.log(`[${new Date().toLocaleString()}] ${req.method} request to ${req.url}`);
+    next(); 
+});
 //middlewares
-app.use(express.static('./public/media'))
+app.use('/public', express.static('public'));  // This sets a virtual path prefix (/public) for serving static files.
+app.use(express.static('public'))  //  Files are accessible directly without a prefix.
+app.use(express.static('/public'))  //   trying to serve an absolute path ,  a folder in the absolute system root
+
 app.use(express.urlencoded({ extended: true }))   
 app.use(express.json())
   
