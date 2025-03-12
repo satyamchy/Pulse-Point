@@ -3,12 +3,14 @@ import Login from '../components/Login'
 import CreateArticle from '../components/CreateArticle';
 import MyArticles from '../components/MyArticles';
 import Home from './HomePage/Home';
+
 import Article, { ArticleLoader } from './Article';
-import { useAuthor } from '../context/AuthorContext'
 import Header from '../Header/Header';
+import { logoutLoader } from './Logout';
 
 
 const Layout = () => {
+
     return (
         <>
             <Header />
@@ -46,15 +48,18 @@ const router = createBrowserRouter([
                 path: "/myArticle/:id",
                 element: <Article />,
                 loader: ArticleLoader
+            },
+            {
+                path: "/logout",
+                element: <Login />,
+                loader: logoutLoader
             }
         ]
     },
 
-
-
 ])
 const Container = () => {
-    const { author } = useAuthor()
+    // const { author } = useAuthor()
     return (
         <div>
             {/* <Routes>

@@ -40,20 +40,23 @@ const Api = () => {
     { console.log("newwwwwwwws", news[0]) }
 
     return (
-        <div>
+        <div className="w-[80%] m-auto">
             {
                 selectedArticle ? (
                     <div>
-                        <button onClick={() => setSelectedAtricle(null)}>Back to Articles</button>
-                        <div className="bg-slate-600 border-2 p-4 m-4">
+                        <button className="bg-gray-200 rounded-lg p-2 my-4" onClick={() => setSelectedAtricle(null)}>Back to Articles</button>
+                        <div className=" p-4  m-4 bg-slate-200 shadow shadow-gray-600 rounded-lg">
                             {/* <button onClick={() => setSelectedAtricle(null)}>Back to Articles</button> */}
-                            {/* <h1> {selectedArticle.author}</h1>
-                            <p> {selectedArticle.description}</p>
-                            <h1> {selectedArticle.publishedAt}</h1>
-                            <h1> {selectedArticle.title}</h1>
-                            <h1> {selectedArticle.source.name}</h1>
-                            <h1> {selectedArticle.source.id}</h1> */}
-                            <h1> {selectedArticle.content}</h1>
+                            <p className="pb-3"> {selectedArticle.description}</p>
+                            <h1 className="pb-3"> {selectedArticle.title}</h1>
+                            {/* <h1> {new Date(selectedArticle.publishedAt).toDateString()}</h1> */}
+                            <h1 className="pb-3"> {selectedArticle.content}</h1>
+                            <div className="flex space-x-6">
+                            <h1 className="pb-3">Source: {selectedArticle.source.name}</h1>
+                            <h1 className="pb-3"> Article By - {selectedArticle.author}</h1>
+                            <h1> {new Date(selectedArticle.publishedAt).toDateString()}</h1>
+                            </div>
+
                             <a href={selectedArticle.url} target="_blank" rel="noopener noreferrer"
                                 className="text-blue-500 underline font-semibold">
                                 Read Full Article
@@ -67,17 +70,16 @@ const Api = () => {
                             // <News article={news[0]} key={0}/>
                             <div key={index}
                                 onClick={() => setSelectedAtricle(article)}
-                                className="bg-slate-600 border-2 p-4 m-4">
-
-                                <h1> {article.author}</h1>
-                                <p> {article.description}</p>
-                                <h1> {article.publishedAt}</h1>
+                                className="bg-slate-200 shadow shadow-gray-600 rounded-lg p-4 m-4 cursor-pointer">
                                 <h1> {article.title}</h1>
-                                <h1> {article.source.name}</h1>
+                                <p> {article.description}</p>
+
+                                <h1> Article By {article.author}</h1>
+                                <h1> {new Date(article.publishedAt).toDateString()}</h1>
                             </div>
 
                         ))
-                    ) : (<p>Loading...</p>)
+                    ) : (<p className="flex justify-center mt-6 text-red-500">Loading...</p>)
                 )
             }
             {/* {} */}

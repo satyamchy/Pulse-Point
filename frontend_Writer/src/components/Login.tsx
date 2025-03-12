@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { useAuthor } from '../context/AuthorContext'
+// import { useAuthor } from '../context/AuthorContext'
+import { AuthorContextData, ContextPropsType } from '../context/AuthorContext';
+
 
 const Login = () => {
-    const { loginAuthor } = useAuthor()
+    const contextData = useContext<ContextPropsType>(AuthorContextData)
+    console.log(contextData)
+
     const navigate = useNavigate()
     const [admin, setIsAdmin] = useState<boolean>(false);
     const [isLogin, setIsLogin] = useState<boolean>(false)
@@ -29,9 +33,13 @@ const Login = () => {
                     }
                 );
                 //console.log(document.cookie)
-                const authorData = response.data;
-               // loginAuthor(authorData)
                 console.log(response.data)
+                const authorData = {
+                    name: response.data.author[0].name,
+                    _id: response.data.author[0]._id,
+                };
+                console.log(authorData)
+                contextData.loginAuthor(authorData)
 
                 if (response.data.success) {
                     toast.success(response.data.message)
@@ -40,7 +48,7 @@ const Login = () => {
                 else {
                     toast.error(response.data.message)
                 }
-            } catch (error:any) {
+            } catch (error: any) {
                 //toast.error(error.response?.data?.message)
                 toast.error("Invalid credentials..")
                 console.log(error.response)
@@ -48,7 +56,7 @@ const Login = () => {
         }
         else {
             try {
-                const res = await axios.post(`${import.meta.env.VITE_AUTHOR_API_END_POINT}/register`,    
+                const res = await axios.post(`${import.meta.env.VITE_AUTHOR_API_END_POINT}/register`,
                     { name, email, password },
                     {
                         headers: {
@@ -64,11 +72,11 @@ const Login = () => {
                 } else {
                     toast.error(res.data.message)
                 }
-            } catch (error:any) {
+            } catch (error: any) {
                 //   console.log("error", error)
                 console.log(error);
                 toast.error(error.response?.data?.message)
-               // toast.error("Invalid Credentials")
+                // toast.error("Invalid Credentials")
             }
         }
     }

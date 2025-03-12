@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const {Register, Login, getAuthorProfile, Logout} = require('../controllers/authorController.js')
+const isAuthenticated = require('../config/auth.js');
 // const { editArticle } = require('../controllers/articleController')
 
 router.route('/register').post(Register)

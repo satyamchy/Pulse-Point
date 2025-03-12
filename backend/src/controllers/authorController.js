@@ -94,7 +94,7 @@ const getAuthorProfile = async (req, res) => {
 }
 const Logout = (req, res) => {
 
-    return res.status(200).json({
+    return res.cookie("token", "", {expiresIn: new Date(Date.now()) }).json({
         message: "user logged out successfully",
         success: true
     })

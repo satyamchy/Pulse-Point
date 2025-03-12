@@ -10,7 +10,6 @@ const Container = ()=>{
         <Header2/>
         <hr className="border-b-2 "/>
 
-        <h1>Container element</h1>
 
         <Api/>
         </>
