@@ -14,7 +14,7 @@ interface PostArticle {
     image: string[],
     media: string[] // {url:string, type: string}[]
 }
-const formatDate = (dateString: string) => {
+export const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     const day = date.toLocaleDateString("en-IN", { day: "2-digit" });
     const month = date.toLocaleDateString("en-IN", { month: "long" });
@@ -58,11 +58,11 @@ const Article = () => {
                     <div className='text-2xl leading-relaxed text-gray-700'>{data.content}</div>
                     <div className='mt-8 flex flex-wrap gap-2'>
                         {
-                            parsedTags.map((tag: string, index: number)=>(
+                            parsedTags.map((tag: string, index: number) => (
                                 <span key={index} className='bg-blue-100 text-blue-600 text-sm px-3 py-1 rounded-full'>{tag}</span>
                             ))
                         }
-                       </div>
+                    </div>
                 </div>
             </div>
 

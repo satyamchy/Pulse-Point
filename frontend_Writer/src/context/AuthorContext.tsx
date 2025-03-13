@@ -12,6 +12,7 @@ export interface ContextPropsType extends AuthorStateType {
     loginAuthor: (authorData: { name: string; _id: string }) => void;
     logoutAuthor: () => void;
 }
+
 export const AuthorContextData = createContext<ContextPropsType>({
     authorName: null,
     authorId: null,

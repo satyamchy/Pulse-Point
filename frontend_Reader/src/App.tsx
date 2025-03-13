@@ -1,11 +1,13 @@
 import Container from './components/Container'
+import Theme from './components/Header/theme'
 
 function App() {
 
   return (
     <>
-    
-    <Container/>
+    <Theme/>
+
+    {/* <Container/> */}
 
     </>
   )

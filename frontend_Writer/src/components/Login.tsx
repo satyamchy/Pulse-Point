@@ -81,30 +81,30 @@ const Login = () => {
         }
     }
     return (
-        <div className="w-screen h-screen bg-gray-200 flex justify-center items-center">
+        <div className="w-screen h-screen bg-gradient-to-r from-[#514c2b] to-[#06021f] flex justify-center items-center">
 
-            <div className="flex flex-col justify-center items-center border rounded-2xl  w-[30%] bg-white">
+            <div className="flex flex-col justify-center items-center border rounded-2xl  w-[30%] bg-[#1B1F3B] text-white">
                 <div className="font-bold text-3xl py-3">{isLogin ? "Signup Form" : "Login Form"}</div>
 
-                <form onSubmit={submitHandler} className="flex flex-col m-4 gap-3 w-[65%]">
+                <form onSubmit={submitHandler} className="flex flex-col  bg-[#1B1F3B]m-4 gap-3 w-[65%]">
                     {isLogin && (<>
                         <label htmlFor="name" className="font-bold text-lg">Name:</label>
-                        <input type="text" className="border border-gray-300 rounded-md p-[8px] text-lg  focus:border-blue-500 focus:outline-none focus:shadow-md focus:shadow-blue-300"
+                        <input type="text" className="border border-[#D72638] rounded-md p-[8px] text-lg  focus:border-blue-500 focus:outline-none focus:shadow-md focus:shadow-blue-300"
                             name="name" value={name} onChange={(e) => setName(e.target.value)} id="name" placeholder="Enter your name..." required />
                     </>)}
 
                     <label htmlFor="email" className="font-bold text-lg" >Email:</label>
-                    <input type="email" className="border border-gray-300 rounded-md p-[8px] text-lg focus:border-blue-500 focus:outline-none focus:shadow-md focus:shadow-blue-300"
+                    <input type="email" className="border border-[#D72638]  rounded-md p-[8px] text-lg focus:border-blue-500 focus:outline-none focus:shadow-md focus:shadow-blue-300"
                         name="email" value={email} onChange={((e) => setEmail(e.target.value))} id="email" placeholder="Enter your email..." required />
 
                     <label htmlFor="password" className="font-bold text-mg">Password:</label>
-                    <input type="text" className="border border-gray-300 rounded-md  p-[8px] text-lg  focus:border-blue-500 focus:outline-none focus:shadow-md focus:shadow-blue-300"
+                    <input type="text" className="border border-[#D72638] rounded-md  p-[8px] text-lg  focus:border-blue-500 focus:outline-none focus:shadow-md focus:shadow-blue-300"
                         name="password" value={password} onChange={(e) => setPassword(e.target.value)} id="password" placeholder="Enter your password..." required />
 
-                    <button type="submit" className="border bg-blue-400 rounded-xl w-30 p-[8px] mx-auto cursor-pointer">Submit</button>
+                    <button type="submit" className="border bg-[#D72638] rounded-xl w-30 p-[8px] mx-auto cursor-pointer">Submit</button>
 
                     <p className="mx-auto py-2 ">{isLogin ? "Already have an account? " : "Don't have an account? "}
-                        <a onClick={() => setIsLogin(!isLogin)} className="underline text-blue-700" href="#" >{isLogin ? "Login" : "Register"}</a></p>
+                        <a onClick={() => setIsLogin(!isLogin)} className="underline text-[#D72638]" href="#" >{isLogin ? "Login" : "Register"}</a></p>
                 </form>
 
             </div>
