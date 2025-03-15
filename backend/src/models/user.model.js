@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema(
         },
         profile: {
             bio: { type: String },
-            profile: { type: String }
+            profile: { type: String , default:"https://cdn-icons-png.flaticon.com/128/3177/3177440.png"}
         },
         role: {
             type: String,

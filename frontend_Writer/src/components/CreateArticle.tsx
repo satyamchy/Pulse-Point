@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from 'axios';
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 
 const CreateArticle = () => {
@@ -67,7 +69,8 @@ const CreateArticle = () => {
                     <textarea name="description" className="border border-gray-300 rounded-md  p-2" value={description} onChange={(e) => setDescription(e.target.value)} id="description" placeholder="Write a brief description" />
 
                     <label htmlFor="content" className="font-bold text-mg">Content:</label>
-                    <textarea name="content" className="border border-gray-300 rounded-md  p-2 h-40" value={content} onChange={(e) => setContent(e.target.value)} id="content" placeholder="Write your article content" required />
+                    {/* <textarea name="content" className="border border-gray-300 rounded-md  p-2 h-40" value={content} onChange={(e) => setContent(e.target.value)} id="content" placeholder="Write your article content" required /> */}
+                   <ReactQuill  className="h-72  mb-12" id="content" theme="snow" value={content} onChange={setContent}  placeholder="Write something here..."  />
 
                     <label htmlFor="image" className="font-bold text-mg">Images of Article:</label>
                     <input type="file" name="image" className="border border-gray-300 rounded-md  p-2" onChange={(e) => setImage(e.target.files)} id="image" multiple />

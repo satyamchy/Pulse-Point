@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useLoaderData, LoaderFunctionArgs, Link } from 'react-router-dom'
 
-interface PostArticle {
+export interface PostArticle {
     title: string,
     description: string,
     summary: string,
@@ -55,7 +55,8 @@ const Article = () => {
                         </div>
                     )}
 
-                    <div className='text-2xl leading-relaxed text-gray-700'>{data.content}</div>
+                    {/* <div className='text-2xl leading-relaxed text-gray-700'>{data.content}</div> */}
+                    <div  dangerouslySetInnerHTML={{ __html: data.content }}/>
                     <div className='mt-8 flex flex-wrap gap-2'>
                         {
                             parsedTags.map((tag: string, index: number) => (

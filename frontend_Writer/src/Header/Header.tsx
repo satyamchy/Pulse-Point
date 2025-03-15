@@ -9,6 +9,7 @@ const Header = () => {
     const contextData = useContext<ContextPropsType>(AuthorContextData);
     console.log("header---", contextData)
     const [isOpen, setIsOpen] = useState(false)
+    const [account, setAccount] = useState(false)
 
     return (
         <div className='bg-[#1B1F3B] text-[#F8F9FA] flex justify-between items-center py-4 px-6 shadow-lg shadow-[#D72638] mb-[4px]'>
@@ -19,14 +20,20 @@ const Header = () => {
             {/* hamburger */}
             {/* <div className='hover:text-[#E63946] transition cursor-pointeer' ><Search /></div> */}
 
-
             <nav className="hidden md:flex space-x-10 text-lg">
                 <div className='hover:text-[#E63946] transition cursor-pointeer' ><Search /></div>
                 <NavLink className='hover:text-[#E63946] transition' to="/createArticle">Create Article</NavLink>
                 <NavLink className='hover:text-[#E63946] transition' to="/myArticles">My Articles</NavLink>
                 <NavLink className='hover:text-[#E63946] transition' to="/logout">Sign out</NavLink>
                 <NavLink className="hover:text-[#E63946] transition" to="#">My Account</NavLink>
+                <img src="https://cdn-icons-png.flaticon.com/128/3177/3177440.png" className='rounded-full w-8 h-8 cursor-pointer' onClick={() => { setAccount(!account) }} />
             </nav>
+            {account && (
+                <div className='absolute top-16 right-2 items-start bg-[#313a79] text-white m-2 p-4 rounded-lg space-y-2 hidden md:block '>
+                    <NavLink className="block hover:text-[#E63946] transition" to="#">My Account</NavLink>
+                    <NavLink className='block hover:text-[#E63946] transition' to="/logout">Sign out</NavLink>
+                </div>
+            )}
 
             <button className='md:hidden '
                 onClick={() => { setIsOpen(!isOpen) }}>{isOpen ? <X /> : <Menu />}
