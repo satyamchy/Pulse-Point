@@ -1,7 +1,24 @@
+import axios from "axios"
 import { useState } from "react";
-import axios from 'axios';
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { LoaderFunctionArgs, useLoaderData } from "react-router-dom"
+import { PostArticle } from "./Article"
+
+
+export const EditArticleLoader = async ({ params }: LoaderFunctionArgs) => {
+    try {
+        // /getposts?postId=${}`
+        const response = await axios.get(`${import.meta.env.VITE_ARTICLE_API_END_POINT}/getpost/${params.id}`)
+        return response?.data?.article;
+
+    } catch (error) {
+        return error
+
+    }
+}
+
+
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
@@ -28,7 +45,11 @@ const toolbarOptions = [
 const module = {
     toolbar: toolbarOptions
 }
-const CreateArticle = () => {
+
+const EditPost = () => {
+    const loaderData = useLoaderData<PostArticle>()
+    console.log(loaderData)
+    const postId = loaderData.data._id;
     const navigate = useNavigate()
     const [title, setTitle] = useState<string>("");
     const [description, setDescription] = useState<string>("")
@@ -58,7 +79,7 @@ const CreateArticle = () => {
             }
             console.log(formData)
 
-            const response = await axios.post(`${import.meta.env.VITE_ARTICLE_API_END_POINT}/createArticle`, formData,
+            const response = await axios.put(`${import.meta.env.VITE_ARTICLE_API_END_POINT}/update-post/${postId}`, formData,
                 {
                     headers: {
                         'Content-Type': 'multipart/form-data',
@@ -72,7 +93,7 @@ const CreateArticle = () => {
                 toast.success(response.data.message)
             }
         } catch (error: any) {
-            toast.error(error.response?.data.message)
+            toast.error(error.response?.data.message || "Article not updated")
             //toast.error("Article not created")
             console.log(error)
         }
@@ -113,4 +134,4 @@ const CreateArticle = () => {
         </div>
     )
 }
-export default CreateArticle;
+export default EditPost;

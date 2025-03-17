@@ -7,9 +7,10 @@ const upload = require('../config/multer.middleware.js')
 // routes for author  calling
 Router.route('/createArticle').post(isAuthenticated, upload.fields([{name:"image", maxCount: 4}, {name:"video", maxCount: 1}]) ,createArticle)
 Router.route('/deleteArticle/:id').get(deleteArticle)
-Router.route('/editArticle/:id').put(editArticle)
+Router.route('/update-post/:id').put(editArticle)
 Router.route('/getMyArticles/:id').get(authorAllArticles)
 Router.route('/myArticle/:id').get(getArticle)
+Router.route('/getpost/:id').get(getArticle)
 
 // routes for user calling
 Router.route('/authorAllArticles/:id').get(authorAllArticles)
