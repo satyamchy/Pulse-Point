@@ -81,7 +81,7 @@ const Login = () => {
         }
     }
     return (
-        <div className="w-screen h-screen bg-gradient-to-r from-[#514c2b] to-[#06021f] flex justify-center items-center">
+        <div className="w-screen h-screen bg-gradient-to-r from-[#514c2b] to-[#1b1546] flex justify-center items-center">
 
             <div className="flex flex-col justify-center items-center border rounded-2xl  w-[30%] bg-[#1B1F3B] text-white">
                 <div className="font-bold text-3xl py-3">{isLogin ? "Signup Form" : "Login Form"}</div>

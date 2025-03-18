@@ -78,8 +78,8 @@ const CreateArticle = () => {
         }
     }
     return (
-        <div className=" flex items-center justify-center my-10 ">
-            <div className="w-[60%] p-10 bg-gray-100">
+        <div className=" flex items-center justify-center  bg-gradient-to-r from-[#514c2b] to-[#06021f]">
+            <div className="w-[60%] p-10 bg-gradient-to-r from-[#787258] to-[#64626f]">
                 <h1 className="text-3xl font-bold">Write an Article</h1>
 
                 <form onSubmit={submitHandler} className="flex flex-col gap-4 mt-6 " encType="multipart/form-data">
@@ -94,7 +94,7 @@ const CreateArticle = () => {
                     {/* <textarea name="content" className="border border-gray-300 rounded-md  p-2 h-40" value={content} onChange={(e) => setContent(e.target.value)} id="content" placeholder="Write your article content" required /> */}
                     <ReactQuill className="h-72  mb-12" id="content" modules={module} theme="snow" value={content} onChange={setContent} placeholder="Write something here..." />
 
-                    <label htmlFor="image" className="font-bold text-mg">Images of Article:</label>
+                    <label htmlFor="image" className="font-bold text-mg pt-4">Images of Article:</label>
                     <input type="file" name="image" className="border border-gray-300 rounded-md  p-2" onChange={(e) => setImage(e.target.files)} id="image" multiple />
 
                     <label htmlFor="video" className="font-bold text-mg">Video of Article</label>

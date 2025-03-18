@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useLoaderData, LoaderFunctionArgs, Link } from 'react-router-dom'
 
 export interface PostArticle {
+    _id: string,
     title: string,
     description: string,
     summary: string,
@@ -40,7 +41,7 @@ const Article = () => {
     console.log(data)
     return (
         <>
-            <div className='flex justify-center bg-gray-100 min-h-screen py-10'>
+            <div className='flex justify-center bg-gray-100 min-h-screen py-10 bg-gradient-to-r from-[#514c2b] to-[#06021f]'>
                 <div className='w-[80%] bg-white rounded-2xl shadow-lg p-8'>
                     <div className='font-bold text-5xl mb-4 text-gray-800'>{data.title}</div>
                     <div className='text-3xl mb-6 text-gray-600'>{data.description}</div>

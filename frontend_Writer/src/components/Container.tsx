@@ -7,6 +7,7 @@ import Home from './HomePage/Home';
 import Article, { ArticleLoader } from './Article';
 import Header from '../Header/Header';
 import { logoutLoader } from './Logout';
+import EditPost, { EditArticleLoader} from './EditPost';
 
 
 const Layout = () => {
@@ -48,6 +49,11 @@ const router = createBrowserRouter([
             {
                 path: "/createArticle",
                 element: <CreateArticle />
+            },
+            {
+                path: "/edit-article/:id",
+                element: <EditPost/>,
+                loader: EditArticleLoader
             },
             {
                 path: "/myArticle/:id",

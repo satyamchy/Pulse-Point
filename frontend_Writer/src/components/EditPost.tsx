@@ -49,15 +49,15 @@ const module = {
 const EditPost = () => {
     const loaderData = useLoaderData<PostArticle>()
     console.log(loaderData)
-    const postId = loaderData.data._id;
+    //const postId = loaderData._id;
     const navigate = useNavigate()
-    const [title, setTitle] = useState<string>("");
-    const [description, setDescription] = useState<string>("")
-    const [content, setContent] = useState<string>("")
-    const [image, setImage] = useState<FileList | null>(null)
-    const [video, setVideo] = useState<FileList | null>(null)
-    const [tags, setTags] = useState<string[]>([])
-    const [action, setAction] = useState<'draft' | 'publish'>('draft');
+    const [title, setTitle] = useState<string>(loaderData.title);
+    const [description, setDescription] = useState<string>(loaderData.description)
+    const [content, setContent] = useState<string>(loaderData.content)
+    const [image, setImage] = useState<FileList | null>(loaderData.image)
+    const [video, setVideo] = useState<FileList | null>(loaderData.media)
+    const [tags, setTags] = useState<string[]>(JSON.parse(loaderData.tags[0] || "[]"))
+    const [action, setAction] = useState<'draft' | 'publish'>(loaderData.status);
 
     const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -79,7 +79,7 @@ const EditPost = () => {
             }
             console.log(formData)
 
-            const response = await axios.put(`${import.meta.env.VITE_ARTICLE_API_END_POINT}/update-post/${postId}`, formData,
+            const response = await axios.put(`${import.meta.env.VITE_ARTICLE_API_END_POINT}/update-post/${loaderData._id}`, formData,
                 {
                     headers: {
                         'Content-Type': 'multipart/form-data',
@@ -99,8 +99,8 @@ const EditPost = () => {
         }
     }
     return (
-        <div className=" flex items-center justify-center my-10 ">
-            <div className="w-[60%] p-10 bg-gray-100">
+        <div className=" flex items-center justify-center   bg-gradient-to-r from-[#514c2b] to-[#06021f]">
+            <div className="w-[60%] p-10 bg-gradient-to-r from-[#787258] to-[#64626f]">
                 <h1 className="text-3xl font-bold">Write an Article</h1>
 
                 <form onSubmit={submitHandler} className="flex flex-col gap-4 mt-6 " encType="multipart/form-data">
@@ -113,9 +113,9 @@ const EditPost = () => {
 
                     <label htmlFor="content" className="font-bold text-mg">Content:</label>
                     {/* <textarea name="content" className="border border-gray-300 rounded-md  p-2 h-40" value={content} onChange={(e) => setContent(e.target.value)} id="content" placeholder="Write your article content" required /> */}
-                    <ReactQuill className="h-72  mb-12" id="content" modules={module} theme="snow" value={content} onChange={setContent} placeholder="Write something here..." />
+                    <ReactQuill className="h-[300px]  mb-12" id="content" modules={module} theme="snow" value={content} onChange={setContent} placeholder="Write something here..." />
 
-                    <label htmlFor="image" className="font-bold text-mg">Images of Article:</label>
+                    <label htmlFor="image" className="font-bold text-mg pt-8">Images of Article:</label>
                     <input type="file" name="image" className="border border-gray-300 rounded-md  p-2" onChange={(e) => setImage(e.target.files)} id="image" multiple />
 
                     <label htmlFor="video" className="font-bold text-mg">Video of Article</label>

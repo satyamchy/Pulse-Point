@@ -1,9 +1,9 @@
 import axios from "axios"
 import { useContext, useEffect, useState } from "react"
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 // import { useAuthor } from "../context/AuthorContext";
 import { AuthorContextData, ContextPropsType } from "../context/AuthorContext";
-import {formatDate} from "../components/Article"
+import { formatDate } from "../components/Article"
 
 type Article = {
     title: string;
@@ -37,22 +37,23 @@ const MyArticles = () => {
         }
         loadData();
     }, []);
-
+    //bg-gradient-to-r from-[#514c2b] to-[#06021f]
     return (
-        <div className="flex justify-center bg-gradient-to-r from-[#e5d98e] to-[#F4A261] ">
+        <div className="flex justify-center bg-gradient-to-r from-[#514c2b] to-[#1b1546] ">
             <div className="w-[80%] ]">
                 <div className="text-3xl font-bold my-6 text-[#1B1F3B]">My Articles</div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 ">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                     {article.length > 0 ? (
                         article.map((item, index) => (
-                            <div key={item._id} className=" bg-[#1B1F3B] rounded-2xl mx-auto my-8 p-6 shadow-lg shadow-gray-700 transition-transform hover:scale-103">
+                            <div key={item._id} className=" bg-[#1B1F3B] rounded-2xl mx-auto my-8 p-6 shadow-lg  shadow-gray-700 transition-transform hover:scale-103">
                                 <NavLink className="font-bold text-2xl text-white hover:underline" to={`/myArticle/${item._id}`} >{item.title}</NavLink>
                                 <p className="text-lg text-white mt-2">{item.description}</p>
                                 <div className="text-sm text-[#F8F9FA] mt-1">{formatDate(item.createdAt)}</div>
                                 <div className="space-x-3">
-                                <button className={`${item.status === 'draft' ? "bg-[#D72638]" : "bg-[#3CB371]"} text-white text-center rounded-lg w-24  py-1 mt-3 `}>{item.status}</button>
-                                <button className="bg-[#F4A261] text-white text-center rounded-lg w-24 py-1 px-2">Edit</button>
+                                    <button className={`${item.status === 'draft' ? "bg-[#D72638]" : "bg-[#3CB371]"} text-white text-center rounded-lg w-24  py-1 mt-3 `}>{item.status}</button>
+                                    {/* <button className="bg-[#F4A261] text-white text-center rounded-lg w-24 py-1 px-2">Edit</button> */}
+                                    <Link to={`/edit-article/${item._id}`} className="bg-[#F4A261] text-white text-center rounded-lg  py-1 px-6">Edit</Link>
                                 </div>
 
 

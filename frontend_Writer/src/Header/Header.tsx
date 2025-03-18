@@ -22,15 +22,17 @@ const Header = () => {
 
             <nav className="hidden md:flex space-x-10 text-lg">
                 <div className='hover:text-[#E63946] transition cursor-pointeer' ><Search /></div>
+                <NavLink className='hover:text-[#E63946] transition' to="/home">Home</NavLink>
                 <NavLink className='hover:text-[#E63946] transition' to="/createArticle">Create Article</NavLink>
                 <NavLink className='hover:text-[#E63946] transition' to="/myArticles">My Articles</NavLink>
-                <NavLink className='hover:text-[#E63946] transition' to="/logout">Sign out</NavLink>
-                <NavLink className="hover:text-[#E63946] transition" to="#">My Account</NavLink>
+                {/* <NavLink className='hover:text-[#E63946] transition' to="/logout">Sign out</NavLink>
+                <NavLink className="hover:text-[#E63946] transition" to="#">My Account</NavLink> */}
                 <img src="https://cdn-icons-png.flaticon.com/128/3177/3177440.png" className='rounded-full w-8 h-8 cursor-pointer' onClick={() => { setAccount(!account) }} />
             </nav>
             {account && (
                 <div className='absolute top-16 right-2 items-start bg-[#313a79] text-white m-2 p-4 rounded-lg space-y-2 hidden md:block '>
-                    <NavLink className="block hover:text-[#E63946] transition" to="#">My Account</NavLink>
+                    <NavLink className="block hover:text-[#E63946] transition" to="/my-account">My Account</NavLink>
+                    <NavLink className="block hover:text-[#E63946] transition" to="/my-profile">My Profile</NavLink>
                     <NavLink className='block hover:text-[#E63946] transition' to="/logout">Sign out</NavLink>
                 </div>
             )}
